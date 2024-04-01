@@ -12,7 +12,9 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "reactflow": "^11.10.4"
+    "reactflow": "^11.10.4",
+    "styled-components": "^6.1.8",
+    "styled-reset": "^4.5.2"
   },
   "devDependencies": {
     "@babel/plugin-syntax-typescript": "^7.24.1",
