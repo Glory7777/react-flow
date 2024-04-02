@@ -86,7 +86,6 @@ const MainLayout = () => {
         {/*<TopologyWrapper>*/}
         <ReactFlowProvider>
           <Sidebar />
-        <InfoManage>
           <TopologyGroundWrapper ref={reactFlowWrapper}>
             <ReactFlow
               nodes={nodes}
@@ -106,10 +105,9 @@ const MainLayout = () => {
               <Background variant="dots" gap={12} size={1} />
             </ReactFlow>
           </TopologyGroundWrapper>
+          <InfoManage />
         </ReactFlowProvider>
         {/*</TopologyWrapper>*/}
-        </InfoManage>
-        <Sidebar />
       </BodyWrapper>
     </>
   );
@@ -124,9 +122,9 @@ const BodyWrapper = styled.div`
   align-items: flex-start;
   gap: 1.5rem;
   align-self: stretch;
-  position: sticky;
+  /* position: sticky; */
   flex-grow: 1;
-  height: 100vh; /* 부모 요소의 높이를 전체 뷰포트 높이로 설정 */
+  height: 100vh;
 `;
 
 const TopologyWrapper = styled.div`

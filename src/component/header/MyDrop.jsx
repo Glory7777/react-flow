@@ -15,7 +15,8 @@ const MyDrop = ({ props }) => {
 
   return (
     <>
-      <Title>훈련전장</Title>
+      <Title>훈련네트워크</Title>
+      <Title>훈련네트워크</Title>
       <MyDropWrapper
         onMouseLeave={() => setActiveDropList(false)}
         onClick={() => setActiveDropList(!activeDropList)}
@@ -27,16 +28,26 @@ const MyDrop = ({ props }) => {
         </ArrowDropDown>
         {activeDropList ? <DropList /> : null}
       </MyDropWrapper>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "center",
+        }}
+      >
+        <Title2>훈련네트워크</Title2>
+      </div>
     </>
   );
 };
 
-const Title = styled.div`
+const Title = styled.span`
   display: flex;
   width: 9.375rem;
   padding: 0.875rem 1.875rem;
   justify-content: center;
   align-items: center;
+  margin-left: 1rem;
   gap: 0.25rem;
   flex-shrink: 0;
   background: var(--10---1A1A1A, #1a1a1a);
@@ -44,6 +55,19 @@ const Title = styled.div`
   border-radius: 5px; /* Adjust as needed */
 `;
 
+const Title2 = styled.span`
+  display: flex;
+  width: 9.375rem;
+  padding: 0.875rem 1.875rem;
+  justify-content: center;
+  align-items: center;
+  margin-left: 63rem;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  background: var(--10---1A1A1A, #1a1a1a);
+  color: white; /* Text color */
+  border-radius: 5px; /* Adjust as needed */
+`;
 const MyDropWrapper = styled.div`
   position: relative;
   display: flex;
@@ -77,7 +101,10 @@ const MyDropWrapper = styled.div`
 `;
 
 const MyDropText = styled.div`
-  width: 100%;
+  width: 100%; /* 혹은 적절한 너비 설정 */
+  overflow: hidden; /* 넘치는 내용을 숨김 */
+  white-space: nowrap; /* 줄바꿈 방지 */
+  text-overflow: ellipsis; /* 넘치는 부분을 생략 부호로 표시 */
 `;
 
 const ArrowDropDown = styled.div`

@@ -35,7 +35,7 @@ const HeaderWrapper = styled.div`
 `;
 
 const HeaderSide = styled.div`
-  margin-left: 2rem;
+  margin-left: 1rem;
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;

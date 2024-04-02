@@ -1,116 +1,96 @@
-// import React from 'react';
 import { styled } from "styled-components";
-import {
-  IconAddCircle,
-  IconCancelCircle,
-  IconDesktopPc,
-  IconDmz,
-  IconFirewall,
-  IconNetworkSwitch,
-  IconNetworkSwitch2,
-  IconServer,
-  IconServerStorage,
-  IconSubNetwork,
-  IconUbuntuServer,
-} from "../styles/Icons";
+
+import React from "react";
 
 const InfoManage = () => {
-  // 컴포넌트를 명명합니다.
-  const onDragStart = (event, nodeType) => {
-    event.dataTransfer.setData("application/reactflow", nodeType);
-    event.dataTransfer.effectAllowed = "move";
-  };
-
   return (
     <LnbAside>
-      <TitleText>훈련전장 GUI</TitleText>
+      <Table>
+        <TableHead>
+          <MenuTitleWrapper>
+            <MenuTitleText>방화벽</MenuTitleText>
+          </MenuTitleWrapper>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <SubTitle label="구분: 네트워크 장비" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="OS : Ubuntu" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="CPU : 2" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="메모리 : 4GB" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="HDD : 50GB" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="Network : VM Network" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="" />
+          </TableRow>
+        </TableBody>
+      </Table>
 
-      <MenuTitleWrapper>
-        <MenuTitleText>네트워크</MenuTitleText>
-      </MenuTitleWrapper>
+      <Table>
+        <TableBody>
+          <TableRow>
+            <MenuTitleWrapper>
+              <MenuTitleText>네트워크</MenuTitleText>
+            </MenuTitleWrapper>
+          </TableRow>
+          <TableRow>
+            <SubTitle label="구분: 네트워크 " />
+          </TableRow>
+          <TableRow>
+            <DataItem label="주소 : 10.0.20.0/24" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="IP : " />
+          </TableRow>
+          <TableRow>
+            <DataItem label="HOST : " />
+          </TableRow>
+          <TableRow>
+            <DataItem label="DNS : " />
+          </TableRow>
+        </TableBody>
+      </Table>
 
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        <IconSubNetwork />
-        <MenuDraggableText>Sub Network</MenuDraggableText>
-      </MenuDraggable>
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "default")}
-        draggable
-      >
-        <IconDmz />
-        <MenuDraggableText>DMZ</MenuDraggableText>
-      </MenuDraggable>
-
-      <MenuTitleWrapper type="object">
-        <MenuTitleText>객체 기술서</MenuTitleText>
-        <IconAddCircle />
-      </MenuTitleWrapper>
-
-      {/*
-            <MenuDraggable onDragStart={(event) => onDragStart(event, 'input')} draggable>
-                <IconNetworkSwitch/>
-                <MenuDraggableText>switch</MenuDraggableText>
-                <IconCancleCircle/>
-            </MenuDraggable>
-*/}
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        <IconServer />
-        <MenuDraggableText>web-db-ubuntu-20</MenuDraggableText>
-        <IconCancelCircle />
-      </MenuDraggable>
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        <IconServer />
-        <MenuDraggableText>ftp-Ubuntu</MenuDraggableText>
-        <IconCancelCircle />
-      </MenuDraggable>
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        <IconUbuntuServer />
-        <MenuDraggableText>Ubuntu</MenuDraggableText>
-        <IconCancelCircle />
-      </MenuDraggable>
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        <IconServer />
-        <MenuDraggableText>mail-centos-8</MenuDraggableText>
-        <IconCancelCircle />
-      </MenuDraggable>
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        <IconServerStorage />
-        <MenuDraggableText>storage-server</MenuDraggableText>
-        <IconCancelCircle />
-      </MenuDraggable>
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "switchNode")}
-        draggable
-      >
-        <IconFirewall />
-        <MenuDraggableText>global-switch</MenuDraggableText>
-        <IconCancelCircle />
-      </MenuDraggable>
+      <Table>
+        <TableBody>
+          <TableRow>
+            <MenuTitleWrapper>
+              <MenuTitleText>추가 실행 스크립트</MenuTitleText>
+            </MenuTitleWrapper>
+          </TableRow>
+          <TableRow>
+            <SubTitle label="1 :" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="2 :" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="3 :" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="4 :" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="5 :" />
+          </TableRow>
+          <TableRow>
+            <DataItem label="6 :" />
+          </TableRow>
+        </TableBody>
+      </Table>
     </LnbAside>
   );
 };
@@ -119,80 +99,93 @@ export default InfoManage;
 
 const LnbAside = styled.aside`
   display: flex;
-  padding: 1.5rem;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
   gap: 1rem;
-  height: -webkit-fill-available;
-  overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    width: 0.5rem;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 0.25rem;
-    background: #4c4c4c;
-  }
-
+  height: 100%;
+  overflow-y: auto;
+  /* padding: 1.5rem; */
   background-color: #262626;
+
+  /* 전체 테이블 셀 배경색 설정 */
+  table {
+    background-color: #262626;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  /* 전체 테이블 헤더 배경색 설정 */
+  thead {
+    background-color: #000;
+  }
+
+  /* 전체 테이블 바디(내용) 배경색 설정 */
+  tbody {
+    background-color: #333;
+  }
+
+  /* 전체 테이블 행 배경색 설정 */
+  tr {
+    background-color: #333;
+  }
+
+  /* 전체 테이블 셀 배경색 설정 */
+  td {
+    padding: 2rem;
+  }
 `;
 
 const TitleText = styled.div`
-  display: flex;
-  width: 13.75rem;
-  height: 2rem;
-  padding: 1.5rem 1rem;
-  align-items: center;
-
   color: #f2f2f2;
   text-align: center;
   font-size: 1.25rem;
-  font-style: normal;
   font-weight: 600;
-  line-height: 100%; /* 1.25rem */
-  letter-spacing: -0.025rem;
+  padding: 1.5rem;
 `;
+
+const Table = styled.table`
+  width: 100%;
+`;
+
+const TableHead = styled.thead``;
+
+const TableHeadCell = styled.th`
+  color: #fff;
+  text-align: left;
+`;
+
+const TableBody = styled.tbody``;
+
+const TableRow = styled.tr``;
 
 const MenuTitleWrapper = styled.div`
   display: flex;
-  width: 13.75rem;
-  padding: 1.2rem 1rem;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1rem;
   border-radius: 0.3125rem;
-  border: 0 solid #2886ff;
-  background: ${(props) => (props.type === "object" ? "#0056C7" : "#1A1A1A")};
+  background: #1a1a1a;
 `;
 
 const MenuTitleText = styled.div`
   color: #f2f2f2;
-  text-align: center;
   font-size: 1rem;
-  font-style: normal;
   font-weight: 600;
-  line-height: 100%; /* 1rem */
-  letter-spacing: -0.02rem;
 `;
 
-const MenuDraggable = styled.div`
-  display: flex;
-  width: 13.75rem;
-  height: 1.8rem;
-  padding: 0.75rem 1.25rem;
-  gap: 0.625rem;
-  align-items: center;
-  border-radius: 31.25rem;
-  border: 0px solid #ccc;
-  background: #fff;
-`;
-
-const MenuDraggableText = styled.span`
+const GreyBackgroundCell = styled.td`
+  background-color: #f2f2f2;
   color: #000;
-  text-align: center;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%; /* 0.875rem */
-  letter-spacing: -0.0175rem;
 `;
+
+const BlackBackgroundCell = styled.td`
+  color: #fff;
+  background-color: #333;
+`;
+
+const DataItem = ({ label }) => (
+  <GreyBackgroundCell>{label}</GreyBackgroundCell>
+);
+
+const SubTitle = ({ label }) => (
+  <BlackBackgroundCell>{label}</BlackBackgroundCell>
+);

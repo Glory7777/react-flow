@@ -23,8 +23,6 @@ const Sidebar = () => {
 
   return (
     <LnbAside>
-      <TitleText>훈련전장 GUI</TitleText>
-
       <MenuTitleWrapper>
         <MenuTitleText>네트워크</MenuTitleText>
       </MenuTitleWrapper>
@@ -119,7 +117,7 @@ export default Sidebar;
 
 const LnbAside = styled.aside`
   display: flex;
-  padding: 1.5rem;
+  /* padding: 1.5rem; */
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
