@@ -1,10 +1,30 @@
+import React from "react";
 import { useEffect, useState } from "react";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+
 import styled from "styled-components";
+
+import routes from "../common/routes";
 
 import MyDrop from "./MyDrop";
 // 더미데이터
 
 const Header = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [currentPath, setCurrentPath] = useState(location.pathname);
+
+  useEffect(() => {
+    const name = routes.find((route) => route.path === currentPath)?.name;
+    document.title = `React Flow Examples${name ? " - " + name : ""}`;
+    navigate(currentPath);
+  }, [currentPath]);
   return (
     <>
       <HeaderWrapper>

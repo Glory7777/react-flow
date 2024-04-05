@@ -1,5 +1,6 @@
 // import React from 'react';
 import { styled } from "styled-components";
+
 import {
   IconAddCircle,
   IconCancelCircle,
@@ -15,7 +16,6 @@ import {
 } from "../styles/Icons";
 
 const Sidebar = () => {
-  // 컴포넌트를 명명합니다.
   const onDragStart = (event, nodeType) => {
     event.dataTransfer.setData("application/reactflow", nodeType);
     event.dataTransfer.effectAllowed = "move";
@@ -26,9 +26,20 @@ const Sidebar = () => {
       <MenuTitleWrapper>
         <MenuTitleText>네트워크</MenuTitleText>
       </MenuTitleWrapper>
-
       <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "input")}
+        onDragStart={(event) =>
+          onDragStart(event, {
+            id: "basegroup1",
+            data: { label: "방어망" },
+            position: { x: 0, y: 20 },
+            type: "group",
+            style: {
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              width: 640,
+              height: 400,
+            },
+          })
+        }
         draggable
       >
         <IconSubNetwork />
@@ -48,6 +59,30 @@ const Sidebar = () => {
         <IconAddCircle />
       </MenuTitleWrapper>
 
+      <div
+        className="react-flow__node-input"
+        onDragStart={(event) => onDragStart(event, "input")}
+        draggable
+      >
+        Input
+      </div>
+
+      <div
+        className="react-flow__node-default"
+        onDragStart={(event) => onDragStart(event, "default")}
+        draggable
+      >
+        Default
+      </div>
+
+      <div
+        className="react-flow__node-output"
+        onDragStart={(event) => onDragStart(event, "output")}
+        draggable
+      >
+        Output
+      </div>
+
       {/*
             <MenuDraggable onDragStart={(event) => onDragStart(event, 'input')} draggable>
                 <IconNetworkSwitch/>
@@ -55,7 +90,7 @@ const Sidebar = () => {
                 <IconCancleCircle/>
             </MenuDraggable>
 */}
-
+      {/* 
       <MenuDraggable
         onDragStart={(event) => onDragStart(event, "input")}
         draggable
@@ -108,7 +143,7 @@ const Sidebar = () => {
         <IconFirewall />
         <MenuDraggableText>global-switch</MenuDraggableText>
         <IconCancelCircle />
-      </MenuDraggable>
+      </MenuDraggable> */}
     </LnbAside>
   );
 };

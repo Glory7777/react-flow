@@ -12,12 +12,15 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
     "reactflow": "^11.10.4",
     "styled-components": "^6.1.8",
-    "styled-reset": "^4.5.2"
+    "styled-reset": "^4.5.2",
+    "typescript": "^4.9.4"
   },
   "devDependencies": {
     "@babel/plugin-syntax-typescript": "^7.24.1",
+    "@types/css-modules": "^1.0.5",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
