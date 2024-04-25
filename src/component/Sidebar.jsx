@@ -1,24 +1,46 @@
-// import React from 'react';
-import { styled } from "styled-components";
+// Sidebar.js
 
+import React, { useCallback, useState, useContext } from "react";
+
+import nodeTypes from "../NodeTypes";
 import {
-  IconAddCircle,
-  IconCancelCircle,
-  IconDesktopPc,
-  IconDmz,
-  IconFirewall,
-  IconNetworkSwitch,
-  IconNetworkSwitch2,
-  IconServer,
-  IconServerStorage,
-  IconSubNetwork,
-  IconUbuntuServer,
-} from "../styles/Icons";
+  LnbAside,
+  MenuDraggable,
+  MenuDraggableText,
+  MenuTitleText,
+  MenuTitleWrapper,
+} from "../component/index";
+import { IconAddCircle, IconCancelCircle, IconFirewall } from "./asset/Icons";
+import { InputNode } from "../CustomNodes.jsx";
 
 const Sidebar = () => {
   const onDragStart = (event, nodeType) => {
+    console.log(event);
+    console.log(nodeType);
+
     event.dataTransfer.setData("application/reactflow", nodeType);
     event.dataTransfer.effectAllowed = "move";
+  };
+
+  const renderNodes = (category) => {
+    return Object.values(nodeTypes)
+      .filter((nodeType) => nodeType.data.category === category)
+      .map((nodeType, index) => {
+        // console.log(nodeType)
+
+        return (
+          <MenuDraggable
+            key={`${nodeType.data.name}-${index}`} // 고유한 키 생성
+            className={`node ${nodeType.data.name}`}
+            onDragStart={(event) => onDragStart(event, nodeType.data.name)}
+            draggable
+          >
+            {React.createElement(nodeType.data.icon)}
+            <MenuDraggableText>{nodeType.data.name}</MenuDraggableText>
+            <IconCancelCircle />
+          </MenuDraggable>
+        );
+      });
   };
 
   return (
@@ -26,206 +48,79 @@ const Sidebar = () => {
       <MenuTitleWrapper>
         <MenuTitleText>네트워크</MenuTitleText>
       </MenuTitleWrapper>
-      <MenuDraggable
-        onDragStart={(event) =>
-          onDragStart(event, {
-            id: "basegroup1",
-            data: { label: "방어망" },
-            position: { x: 0, y: 20 },
-            type: "group",
-            style: {
-              backgroundColor: "rgba(255, 255, 255, 0.5)",
-              width: 640,
-              height: 400,
-            },
-          })
-        }
-        draggable
-      >
-        <IconSubNetwork />
-        <MenuDraggableText>Sub Network</MenuDraggableText>
-      </MenuDraggable>
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "default")}
-        draggable
-      >
-        <IconDmz />
-        <MenuDraggableText>DMZ</MenuDraggableText>
-      </MenuDraggable>
-
+      {renderNodes("network")}
       <MenuTitleWrapper type="object">
         <MenuTitleText>객체 기술서</MenuTitleText>
         <IconAddCircle />
       </MenuTitleWrapper>
-
-      <div
-        className="react-flow__node-input"
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        Input
-      </div>
-
-      <div
-        className="react-flow__node-default"
-        onDragStart={(event) => onDragStart(event, "default")}
-        draggable
-      >
-        Default
-      </div>
-
-      <div
-        className="react-flow__node-output"
-        onDragStart={(event) => onDragStart(event, "output")}
-        draggable
-      >
-        Output
-      </div>
-
+      {renderNodes("object")}
       {/*
-            <MenuDraggable onDragStart={(event) => onDragStart(event, 'input')} draggable>
-                <IconNetworkSwitch/>
-                <MenuDraggableText>switch</MenuDraggableText>
-                <IconCancleCircle/>
-            </MenuDraggable>
+
+      <InputNode
+          data={{
+            icon: IconFirewall,
+            name: "UtmPfsense",
+            label: "방어막 방화벽",
+            category: "object",
+          }}
+      />
 */}
-      {/* 
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        <IconServer />
-        <MenuDraggableText>web-db-ubuntu-20</MenuDraggableText>
-        <IconCancelCircle />
-      </MenuDraggable>
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        <IconServer />
-        <MenuDraggableText>ftp-Ubuntu</MenuDraggableText>
-        <IconCancelCircle />
-      </MenuDraggable>
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        <IconUbuntuServer />
-        <MenuDraggableText>Ubuntu</MenuDraggableText>
-        <IconCancelCircle />
-      </MenuDraggable>
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        <IconServer />
-        <MenuDraggableText>mail-centos-8</MenuDraggableText>
-        <IconCancelCircle />
-      </MenuDraggable>
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        <IconServerStorage />
-        <MenuDraggableText>storage-server</MenuDraggableText>
-        <IconCancelCircle />
-      </MenuDraggable>
-
-      <MenuDraggable
-        onDragStart={(event) => onDragStart(event, "switchNode")}
-        draggable
-      >
-        <IconFirewall />
-        <MenuDraggableText>global-switch</MenuDraggableText>
-        <IconCancelCircle />
-      </MenuDraggable> */}
     </LnbAside>
   );
 };
 
 export default Sidebar;
 
-const LnbAside = styled.aside`
-  display: flex;
-  /* padding: 1.5rem; */
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1rem;
-  height: -webkit-fill-available;
-  overflow-y: scroll;
+// --------
 
-  &::-webkit-scrollbar {
-    width: 0.5rem;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 0.25rem;
-    background: #4c4c4c;
-  }
+// import React, { useCallback, useState, useContext } from "react";
 
-  background-color: #262626;
-`;
+// import nodeTypes from "../NodeTypes";
+// import {
+//   LnbAside,
+//   MenuDraggable,
+//   MenuDraggableText,
+//   MenuTitleText,
+//   MenuTitleWrapper,
+// } from "../component/index";
+// import { IconAddCircle, IconCancelCircle } from "./asset/Icons";
 
-const TitleText = styled.div`
-  display: flex;
-  width: 13.75rem;
-  height: 2rem;
-  padding: 1.5rem 1rem;
-  align-items: center;
+// const Sidebar = () => {
+//   const onDragStart = (event, nodeType) => {
+//     event.dataTransfer.setData("application/reactflow", nodeType);
+//     event.dataTransfer.effectAllowed = "move";
+//   };
 
-  color: #f2f2f2;
-  text-align: center;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 100%; /* 1.25rem */
-  letter-spacing: -0.025rem;
-`;
+//   const renderNodes = (category) => {
+//     return Object.values(nodeTypes)
+//       .filter((nodeType) => nodeType.data.category === category)
+//       .map((nodeType, index) => (
+//         <MenuDraggable
+//           key={`${nodeType}-${index}`} // 고유한 키 생성
+//           className={`node ${nodeType}`}
+//           onDragStart={(event) => onDragStart(event, nodeType)}
+//           draggable
+//         >
+//           {React.createElement(nodeType.data.icon)}
+//           <MenuDraggableText>{nodeType.data.name}</MenuDraggableText>
+//           <IconCancelCircle />
+//         </MenuDraggable>
+//       ));
+//   };
 
-const MenuTitleWrapper = styled.div`
-  display: flex;
-  width: 13.75rem;
-  padding: 1.2rem 1rem;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 0.3125rem;
-  border: 0 solid #2886ff;
-  background: ${(props) => (props.type === "object" ? "#0056C7" : "#1A1A1A")};
-`;
+//   return (
+//     <LnbAside>
+//       <MenuTitleWrapper>
+//         <MenuTitleText>네트워크</MenuTitleText>
+//       </MenuTitleWrapper>
+//       {renderNodes("network")}
+//       <MenuTitleWrapper type="object">
+//         <MenuTitleText>객체 기술서</MenuTitleText>
+//         <IconAddCircle />
+//       </MenuTitleWrapper>
+//       {renderNodes("object")}
+//     </LnbAside>
+//   );
+// };
 
-const MenuTitleText = styled.div`
-  color: #f2f2f2;
-  text-align: center;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 100%; /* 1rem */
-  letter-spacing: -0.02rem;
-`;
-
-const MenuDraggable = styled.div`
-  display: flex;
-  width: 13.75rem;
-  height: 1.8rem;
-  padding: 0.75rem 1.25rem;
-  gap: 0.625rem;
-  align-items: center;
-  border-radius: 31.25rem;
-  border: 0px solid #ccc;
-  background: #fff;
-`;
-
-const MenuDraggableText = styled.span`
-  color: #000;
-  text-align: center;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%; /* 0.875rem */
-  letter-spacing: -0.0175rem;
-`;
+// export default Sidebar;
